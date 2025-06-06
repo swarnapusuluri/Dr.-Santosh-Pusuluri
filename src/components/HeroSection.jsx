@@ -4,16 +4,14 @@ import FloatingParticles from './FloatingParticles';
 import GlowButton from './GlowButton';
 import '../App.css';
 
-export default function HeroSection({ scrollToServices, handleBookConsultation }) {
+export default function HeroSection({ scrollToServices, handleBookConsultation, onLearnMoreAboutDrSantosh }) { // Added onLearnMoreAboutDrSantosh prop
   return (
     <section className="hero-section" id="about">
       <FloatingParticles />
       <div className="hero-content">
-        {/* MODIFIED: Added BDS, MDS */}
         <h1 className="hero-title">
           Dr. Santosh Pusuluri <span className="hero-qualifications">BDS, MDS</span>
         </h1>
-        {/* END MODIFIED */}
         <p className="hero-subtitle">
           Periodontist | PANINEEYA Institute | Osmania University Alum
         </p>
@@ -26,9 +24,16 @@ export default function HeroSection({ scrollToServices, handleBookConsultation }
         <p className="hero-description">
           Specializing in gum surgeries, implants, and preventive periodontal care
         </p>
-        <GlowButton onClick={scrollToServices}>
-          Explore My Services
-        </GlowButton>
+        <div className="hero-actions"> {/* NEW: Wrap buttons for layout */}
+          <GlowButton onClick={scrollToServices}>
+            Explore Our Services
+          </GlowButton>
+          {/* NEW: Button to open Dr. Santosh's CV modal */}
+          <GlowButton onClick={onLearnMoreAboutDrSantosh}>
+            Learn More About Dr. Santosh
+          </GlowButton>
+          {/* END NEW */}
+        </div>
       </div>
       <div className="scroll-indicator">
         <div className="scroll-mouse">

@@ -788,3 +788,166 @@ body {
   /* ... rest of modal-overlay styles ... */
 }
 
+.hero-actions {
+  display: flex;
+  flex-direction: row; /* Arrange buttons side-by-side initially */
+  gap: 20px; /* Space between buttons */
+  margin-top: 40px; /* Space from description */
+  justify-content: center; /* Center the buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+/* NEW: Styles for Dr. Santosh CV Modal content */
+.dr-santosh-cv-modal .modal-header {
+  text-align: center;
+  margin-bottom: 20px;
+  display: block; /* Override flex for title to make subtitle below */
+}
+
+.dr-santosh-cv-modal .modal-title .modal-qualifications {
+  font-size: 0.6em; /* Smaller for the title within the modal */
+  font-weight: normal;
+  color: rgba(224, 255, 255, 0.7);
+  display: block; /* Make it appear on a new line below the name */
+  margin-top: 5px;
+}
+
+.cv-contact-info {
+  font-size: 1rem;
+  color: rgba(224, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap; /* Allow contact info to wrap */
+}
+
+.cv-contact-info .email-spacer {
+  margin-left: 20px; /* Add space between phone and email for better separation */
+}
+
+.cv-body {
+  padding-top: 10px;
+  line-height: 1.6;
+}
+
+.cv-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: rgba(0, 191, 255, 0.05); /* Light blue background for sections */
+  border-left: 3px solid #00bfff; /* Blue border on the left */
+  border-radius: 8px;
+  backdrop-filter: blur(5px); /* Add a subtle blur */
+}
+
+.cv-section h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #00bfff;
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
+  border-bottom: 1px solid rgba(0, 191, 255, 0.2);
+  padding-bottom: 5px;
+}
+
+.cv-details {
+  font-size: 1.00rem;
+  color: rgba(224, 255, 255, 0.9);
+}
+
+.cv-item {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(224, 255, 255, 0.1);
+}
+
+.cv-item:last-child {
+  border-bottom: none; /* No border for the last item in a section */
+}
+
+.cv-item p {
+  margin-bottom: 5px;
+  color: rgba(224, 255, 255, 0.95);
+}
+
+.cv-item p strong {
+  color: #e0ffff;
+}
+
+.cv-dates {
+  font-size: 0.95rem;
+  color: rgba(224, 255, 255, 0.7);
+  font-style: italic;
+  margin-top: -5px;
+}
+
+.cv-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-list li {
+  padding: 8px 0;
+  color: rgba(224, 255, 255, 0.9);
+  font-size: 1.05rem;
+}
+
+.cv-list li strong {
+  color: #00bfff;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.skill-item {
+  background: rgba(0, 191, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  font-weight: 500;
+}
+
+
+/* Responsive adjustments for the new hero-actions */
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    gap: 15px;
+  }
+}
+
+/* Ensure modal content takes full width on very small screens */
+@media (max-width: 480px) {
+  .modal-content.dr-santosh-cv-modal {
+    padding: 20px;
+    border-radius: 15px;
+  }
+  .dr-santosh-cv-modal .modal-header h2 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+  .dr-santosh-cv-modal .modal-header h2 .modal-qualifications {
+    font-size: 0.7em;
+  }
+  .cv-contact-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .cv-contact-info .email-spacer {
+    margin-left: 0;
+  }
+  .cv-section h3 {
+    font-size: 1.4rem;
+  }
+  .cv-details, .cv-item p, .cv-list li {
+    font-size: 0.95rem;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr; /* Stack skills on tiny screens */
+  }
+}

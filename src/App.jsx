@@ -2,35 +2,34 @@
 import { useState } from "react";
 import './App.css';
 
-// Import all components from the components folder
+// Import all components
 import {
   Header,
   HeroSection,
   ServicesSection,
   ContactSection,
-  ServiceModal
+  ServiceModal,
+  DrSantoshModal // NEW: Import DrSantoshModal
 } from './components';
 
-// Import services data
+// Import data
 import { services } from './data/servicesData';
+import { drSantoshCV } from './data/cvData'; // NEW: Import CV Data
 
 export default function App() {
   const [selectedService, setSelectedService] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
+  const [isDrSantoshModalOpen, setIsDrSantoshModalOpen] = useState(false); // NEW: State for Dr. Santosh modal
 
   const handleLearnMore = (service) => {
-    console.log('[App] handleLearnMore called. Service:', service.name);
     setSelectedService(service);
-    setIsModalOpen(true);
-    console.log('[App] State updated: isModalOpen = true, selectedService =', service.name);
+    setIsServiceModalOpen(true);
   };
 
-  const closeModal = () => {
-    console.log('[App] closeModal called.');
-    setIsModalOpen(false);
+  const closeServiceModal = () => {
+    setIsServiceModalOpen(false);
     setTimeout(() => {
       setSelectedService(null);
-      console.log('[App] selectedService set to null after animation delay.');
     }, 300);
   };
 
@@ -39,13 +38,22 @@ export default function App() {
   };
 
   const handleBookConsultation = () => {
-    window.open('tel:+918331995566'); // Opens phone dialer
-    closeModal();
+    window.open('tel:+918331995566');
+    closeServiceModal(); // Close service modal if booking from inside it
+    closeDrSantoshModal(); // Close Dr. Santosh modal if booking from inside it (though not directly linked here)
+  };
+
+  // NEW: Functions to open/close Dr. Santosh CV modal
+  const openDrSantoshModal = () => {
+    setIsDrSantoshModalOpen(true);
+  };
+
+  const closeDrSantoshModal = () => {
+    setIsDrSantoshModalOpen(false);
   };
 
   return (
     <div className="app">
-      {/* Background Video */}
       <video autoPlay loop muted playsInline className="video-bg">
         <source src="videos/intro.mp4" type="video/mp4" />
         Your browser does not support the video tag.
@@ -55,6 +63,7 @@ export default function App() {
       <HeroSection
         scrollToServices={scrollToServices}
         handleBookConsultation={handleBookConsultation}
+        onLearnMoreAboutDrSantosh={openDrSantoshModal} // NEW: Pass the open function
       />
       <ServicesSection services={services} onLearnMore={handleLearnMore} />
       <ContactSection
@@ -63,10 +72,18 @@ export default function App() {
 
       <ServiceModal
         service={selectedService}
-        isOpen={isModalOpen}
-        onClose={closeModal}
+        isOpen={isServiceModalOpen}
+        onClose={closeServiceModal}
         handleBookConsultation={handleBookConsultation}
       />
+
+      {/* NEW: Dr. Santosh CV Modal */}
+      <DrSantoshModal
+        isOpen={isDrSantoshModalOpen}
+        onClose={closeDrSantoshModal}
+        cvData={drSantoshCV} // Pass the structured CV data
+      />
+      {/* END NEW */}
     </div>
   );
 }

@@ -920,6 +920,7 @@ body {
   .hero-actions {
     flex-direction: column; /* Stack buttons vertically on small screens */
     gap: 15px;
+    align-items: center;
   }
 }
 

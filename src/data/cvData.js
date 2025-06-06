@@ -108,7 +108,6 @@ export const drSantoshCV = {
     "8. Perio Avalokan, Bhimavaram",
   ],
   personalDetails: {
-    dateOfBirth: "06/02/1998",
     languages: "English, Telugu, Hindi",
     address: "Hyderabad.",
   },

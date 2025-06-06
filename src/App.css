@@ -156,7 +156,7 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 7vw, 5rem);
   font-weight: bold;
   margin-bottom: 20px;
   color: #e0ffff;
@@ -660,6 +660,7 @@ body {
 .header-title-link {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 .header-title {
@@ -950,4 +951,40 @@ body {
   .skills-grid {
     grid-template-columns: 1fr; /* Stack skills on tiny screens */
   }
+}
+
+/* Footer styles */
+.footer {
+  width: 100%;
+  padding: 30px 20px;
+  background: rgba(0, 0, 0, 0.7); /* Slightly transparent dark background */
+  color: #e0ffff; /* Light blue-white text */
+  text-align: center;
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(0, 191, 255, 0.2); /* Subtle glow border */
+  box-shadow: 0 -5px 20px rgba(0, 191, 255, 0.1); /* Subtle top shadow */
+  position: relative; /* For z-index if needed, or other positioning */
+  z-index: 10; /* Ensure it's above other elements if necessary */
+  backdrop-filter: blur(5px); /* Add blur for glassmorphism effect */
+}
+
+.footer-text {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+.footer-text a {
+  color: #00bfff; /* Blue for the email link */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-text a:hover {
+  color: #a0f0ff; /* Lighter blue on hover */
+  text-decoration: underline;
+}
+
+.developer-name {
+  font-weight: bold;
+  color: #00bfff; /* Highlight developer name */
 }

@@ -22,11 +22,11 @@ export default function HeroSection({ scrollToServices, handleBookConsultation, 
           <span className="contact-symbol">📞</span> <a href="tel:+918331995566">+91 8331995566</a>
         </p>
         <p className="hero-description">
-          Specializing in gum surgeries, implants, and preventive periodontal care
+          Specializing in gum surgeries, implants, Laser flap surgeries, and preventive periodontal care
         </p>
         <div className="hero-actions"> {/* NEW: Wrap buttons for layout */}
           <GlowButton onClick={scrollToServices}>
-            Explore Our Services
+            Explore Services
           </GlowButton>
           {/* NEW: Button to open Dr. Santosh's CV modal */}
           <GlowButton onClick={onLearnMoreAboutDrSantosh}>

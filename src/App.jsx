@@ -9,17 +9,18 @@ import {
   ServicesSection,
   ContactSection,
   ServiceModal,
-  DrSantoshModal // NEW: Import DrSantoshModal
+  DrSantoshModal,
+  Footer // NEW: Import Footer
 } from './components';
 
 // Import data
 import { services } from './data/servicesData';
-import { drSantoshCV } from './data/cvData'; // NEW: Import CV Data
+import { drSantoshCV } from './data/cvData';
 
 export default function App() {
   const [selectedService, setSelectedService] = useState(null);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
-  const [isDrSantoshModalOpen, setIsDrSantoshModalOpen] = useState(false); // NEW: State for Dr. Santosh modal
+  const [isDrSantoshModalOpen, setIsDrSantoshModalOpen] = useState(false);
 
   const handleLearnMore = (service) => {
     setSelectedService(service);
@@ -39,11 +40,10 @@ export default function App() {
 
   const handleBookConsultation = () => {
     window.open('tel:+918331995566');
-    closeServiceModal(); // Close service modal if booking from inside it
-    closeDrSantoshModal(); // Close Dr. Santosh modal if booking from inside it (though not directly linked here)
+    closeServiceModal();
+    closeDrSantoshModal();
   };
 
-  // NEW: Functions to open/close Dr. Santosh CV modal
   const openDrSantoshModal = () => {
     setIsDrSantoshModalOpen(true);
   };
@@ -59,11 +59,14 @@ export default function App() {
         Your browser does not support the video tag.
       </video>
 
-      <Header />
+      {/* NEW: Pass openDrSantoshModal to Header */}
+      <Header onHeaderTitleClick={openDrSantoshModal} />
+      {/* END NEW */}
+
       <HeroSection
         scrollToServices={scrollToServices}
         handleBookConsultation={handleBookConsultation}
-        onLearnMoreAboutDrSantosh={openDrSantoshModal} // NEW: Pass the open function
+        onLearnMoreAboutDrSantosh={openDrSantoshModal}
       />
       <ServicesSection services={services} onLearnMore={handleLearnMore} />
       <ContactSection
@@ -77,12 +80,14 @@ export default function App() {
         handleBookConsultation={handleBookConsultation}
       />
 
-      {/* NEW: Dr. Santosh CV Modal */}
       <DrSantoshModal
         isOpen={isDrSantoshModalOpen}
         onClose={closeDrSantoshModal}
-        cvData={drSantoshCV} // Pass the structured CV data
+        cvData={drSantoshCV}
       />
+
+      {/* NEW: Render Footer */}
+      <Footer />
       {/* END NEW */}
     </div>
   );

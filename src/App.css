@@ -1,0 +1,790 @@
+/* App.css */
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden; /* Ensure horizontal scrollbar is hidden at the root */
+  width: 100vw; /* Explicitly set html width to viewport width */
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #e0ffff; /* Default text color for light glow */
+  overflow-x: hidden; /* Ensure horizontal scrollbar is hidden */
+  width: 100vw; /* Explicitly set body width to viewport width */
+  min-height: 100vh; /* Ensure body takes full height */
+}
+
+.app {
+  min-height: 100vh;
+  width: 100vw; /* Explicitly set app width to viewport width */
+  overflow-x: hidden; /* Crucial for preventing horizontal scroll/whitespace */
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.2); /* A slight fallback overlay */
+}
+
+/* Background video */
+.video-bg {
+  position: fixed; /* Keep this as fixed for the background video effect */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1; /* Place it behind all content */
+  filter: brightness(0.3); /* Dims the background as desired */
+}
+
+/* Floating Particles */
+.floating-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2; /* Increased z-index to be above backgrounds but below content */
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 191, 255, 0.3);
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Glow Button */
+.glow-button {
+  position: relative;
+  padding: 16px 32px;
+  background: linear-gradient(45deg, rgba(0, 191, 255, 0.8), rgba(59, 130, 246, 0.8));
+  border: 2px solid rgba(0, 191, 255, 0.5);
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.glow-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 191, 255, 0.5);
+  border-color: rgba(0, 191, 255, 0.8);
+}
+
+.glow-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s;
+}
+
+.glow-button:hover::before {
+  left: 100%;
+}
+
+.button-text {
+  position: relative;
+  z-index: 10;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 100px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  width: 100%;
+  padding: 50px 20px 0;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 12px 24px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 191, 255, 0.5);
+  border-radius: 50px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-badge span {
+  color: #00bfff;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #e0ffff;
+  text-shadow: 0 0 30px rgba(0, 191, 255, 0.8), 0 0 60px rgba(0, 191, 255, 0.6);
+  animation: glow 3s ease-in-out infinite;
+}
+
+.hero-title .hero-qualifications {
+  font-size: 0.3em; /* Make it half the size of the main title */
+  font-weight: normal; /* Less bold than the name */
+  color: #e0ffff;
+  text-shadow: none; /* Remove additional text shadow if it looks too busy */
+  vertical-align: super; /* Slightly raise it up */
+  margin-left: 10px; /* Space from the name */
+}
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(0, 191, 255, 0.8), 0 0 40px rgba(0, 191, 255, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(0, 191, 255, 1), 0 0 60px rgba(0, 191, 255, 0.6);
+  }
+}
+
+.hero-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 15px;
+  color: rgba(224, 255, 255, 0.9);
+}
+
+/* NEW: Styles for contact info in Hero Section */
+.hero-contact-info {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  margin-bottom: 5px;
+  color: rgba(224, 255, 255, 0.8);
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  gap: 10px; /* Space between symbol and text */
+}
+
+.hero-contact-info a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.hero-contact-info a:hover {
+  color: #38bdf8;
+  text-decoration: underline;
+}
+
+.contact-symbol {
+  font-size: 1.2em; /* Make symbol slightly larger than text */
+  margin-right: 0; /* Adjusted for gap property */
+}
+
+.hero-description {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: bold;
+  margin-top: 20px; /* Adjusted margin */
+  margin-bottom: 40px;
+  color: #00bfff;
+  text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 48px;
+  border: 2px solid #00bfff;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 16px;
+  background: #00bfff;
+  border-radius: 2px;
+  margin-top: 8px;
+  animation: scroll 2s infinite;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Services Section */
+.services-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 20px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.services-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.services-title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #e0ffff;
+  text-shadow: 0 0 25px rgba(0, 191, 255, 0.8), 0 0 50px rgba(0, 191, 255, 0.5);
+  animation: glow 3s ease-in-out infinite;
+}
+
+.services-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  max-width: 800px;
+  margin: 0 auto;
+  color: rgba(224, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Service Cards */
+.service-card {
+  position: relative;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 191, 255, 0.1);
+  transition: all 0.5s ease;
+  transform: translateY(30px);
+  opacity: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.service-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 191, 255, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 191, 255, 0.2);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.05), rgba(59, 130, 246, 0.05));
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none; /* Crucial for allowing clicks through the invisible overlay */
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.3));
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.service-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #e0ffff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+}
+
+.service-summary {
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: rgba(224, 255, 255, 0.9);
+}
+
+.learn-more-btn {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: #00bfff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+  font-size: 1rem;
+}
+
+.learn-more-btn:hover {
+  color: #38bdf8;
+  transform: translateX(5px);
+}
+
+/* Contact Section */
+.contact-section {
+  position: relative;
+  padding: 80px 20px;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.contact-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.contact-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #e0ffff;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.8), 0 0 40px rgba(0, 191, 255, 0.4);
+}
+
+.contact-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  margin-bottom: 40px;
+  line-height: 1.6;
+  color: rgba(224, 255, 255, 0.9);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 191, 255, 0.2);
+  z-index: 10;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: #00bfff;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+}
+
+.modal-close:hover {
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-icon {
+  font-size: 5rem;
+  margin-bottom: 0;
+  filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.3));
+}
+
+.modal-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: bold;
+  color: #e0ffff;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+}
+
+.modal-price {
+  font-size: 1.3rem;
+  color: #a0a0a0;
+  margin-top: 10px;
+}
+
+.modal-body {
+  line-height: 1.7;
+}
+
+.modal-section {
+  margin-bottom: 30px;
+}
+
+.modal-section h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+}
+
+.modal-details {
+  font-size: 1.1rem;
+  color: rgba(224, 255, 255, 0.9);
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits-list li {
+  background-color: rgba(0, 191, 255, 0.1);
+  padding: 12px 18px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  color: #e0e0e0;
+  font-size: 1.05rem;
+}
+
+.benefits-list li::before {
+  content: '✔';
+  color: #00bfff;
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.modal-highlight {
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  border-radius: 15px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  margin-top: 40px;
+}
+
+.modal-highlight h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+}
+
+.modal-highlight p {
+  color: rgba(224, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-secondary {
+  background-color: #333;
+  color: #fff;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 250px;
+}
+
+.btn-secondary:hover {
+  background-color: #555;
+  transform: translateY(-2px);
+}
+
+/* Header/Navbar */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 191, 255, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 191, 255, 0.1);
+}
+
+.header-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+  transition: color 0.3s ease;
+}
+.header-title .header-qualifications {
+  font-size: 0.5em; /* Adjust as needed, e.g., 0.6em or 0.7em */
+  font-weight: normal; /* Less bold than the name */
+  color: #00bfff;
+  text-shadow: none; /* Remove any inherited glow */
+  vertical-align: super; /* Slightly raise it up */
+  margin-left: 5px; /* Small space from the name */
+}
+
+.header-title:hover {
+  color: #38bdf8;
+}
+
+.header-nav a {
+  color: #e0ffff;
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.header-nav a:hover {
+  color: #38bdf8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .service-card {
+    padding: 30px;
+  }
+
+  .modal-content {
+    padding: 30px;
+    margin: 20px;
+  }
+
+  .hero-content {
+    padding: 50px 15px 0;
+  }
+
+  .header {
+    padding: 15px 20px;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+  }
+
+  .header-nav a {
+    margin-left: 15px;
+    font-size: 1rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .glow-button {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+  }
+
+  .btn-secondary {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+.modal-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Place it behind the modal content */
+  filter: brightness(0.4); /* Dims the video for readability */
+  border-radius: inherit; /* This is KEY: makes the video inherit the border-radius of .modal-content */
+}
+
+/* Adjust .modal-content background to be transparent or very subtle,
+   so the video can show through. Keep backdrop-filter for the frosted effect. */
+.modal-content {
+  position: relative; /* Needs to be relative for absolute children (the video) */
+  background: rgba(0, 0, 0, 0.2); /* Make this very subtle or transparent */
+  backdrop-filter: blur(20px); /* Keep this for the frosted glass effect */
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 24px; /* Ensure this is set */
+  padding: 40px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 191, 255, 0.2);
+  z-index: 10; /* Ensure content is above the video */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Ensure .modal-overlay still has its semi-transparent background for the overall dimming */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.7); /* Keep this as is */
+  /* ... rest of modal-overlay styles ... */
+}
+

@@ -27,7 +27,7 @@ export default function HeroSection({ scrollToServices, handleBookConsultation }
           Specializing in gum surgeries, implants, and preventive periodontal care
         </p>
         <GlowButton onClick={scrollToServices}>
-          Explore Our Services
+          Explore My Services
         </GlowButton>
       </div>
       <div className="scroll-indicator">

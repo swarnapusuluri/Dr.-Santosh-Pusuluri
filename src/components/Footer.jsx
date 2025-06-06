@@ -11,11 +11,14 @@ export default function Footer() {
         &copy; {currentYear} Dr. Santosh Pusuluri. All Rights Reserved.
       </p>
       <p className="footer-text">
-        Developed by <span className="developer-name">Swarna Pusuluri</span> (
-        <a href="https://www.linkedin.com/in/swarna-pusuluri/" target="_blank" rel="noopener noreferrer" className="developer-email">
-          swarnapusuluri@gmail.com
+        Developed by{' '}
+        <a href="https://www.linkedin.com/in/swarna-pusuluri/" target="_blank" rel="noopener noreferrer" className="developer-name-link">
+          Swarna Pusuluri
         </a>
-        )
+        {' '}
+        (<a href="mailto:swarnapusuluri@gmail.com" className="developer-email">
+          swarnapusuluri@gmail.com
+        </a>)
       </p>
     </footer>
   );

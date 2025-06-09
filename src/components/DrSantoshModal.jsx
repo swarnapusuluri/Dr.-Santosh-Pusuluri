@@ -30,11 +30,12 @@ export default function DrSantoshModal({ isOpen, onClose, cvData }) {
       <FloatingParticles />
       <div className="modal-content dr-santosh-cv-modal" onClick={(e) => e.stopPropagation()}>
         {/* Background video for the modal content */}
-        <video autoPlay loop muted playsInline className="modal-video-bg">
-          <source src="/intro2.mp4" type="video/mp4" />
+        {/* <video autoPlay loop muted playsInline className="modal-video-bg">
+          <source src=" videos/intro2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
 
+        {/* This is the close button */}
         <button onClick={onClose} className="modal-close" aria-label="Close modal">
           ×
         </button>
@@ -42,8 +43,8 @@ export default function DrSantoshModal({ isOpen, onClose, cvData }) {
         <div className="modal-header">
           <h2 className="modal-title">{cvData.name} <span className="modal-qualifications">{cvData.title}</span></h2>
           <p className="modal-subtitle cv-contact-info">
-            <span className="contact-symbol">📞</span> <a href="tel:+918331995566">+91 8331995566</a>
-            <span className="contact-symbol email-spacer">✉️</span> <a href="mailto:santoshpusuluri443@gmail.com">santoshpusuluri443@gmail.com</a>
+            <span className="contact-symbol">📞</span> <a href={`tel:${cvData.phone}`}>+91 8331995566</a>
+            <span className="contact-symbol email-spacer">✉️</span> <a href={`mailto:${cvData.email}`}>santoshpusuluri443@gmail.com</a>
           </p>
         </div>
 
@@ -135,6 +136,12 @@ export default function DrSantoshModal({ isOpen, onClose, cvData }) {
             <p><strong>Languages Known:</strong> {cvData.personalDetails.languages}</p>
             <p><strong>Address:</strong> {cvData.personalDetails.address}</p>
           </div>
+
+          <div className="modal-actions">
+          <button className="glow-button" onClick={onClose}>
+            <span className="button-text">Close</span>
+          </button>
+        </div>
         </div>
       </div>
     </div>

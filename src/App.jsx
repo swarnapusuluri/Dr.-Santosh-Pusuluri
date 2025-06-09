@@ -2,7 +2,7 @@
 import { useState } from "react";
 import './App.css';
 
-// Import all components
+// Import all components (NEW: SwarnaInfoModal)
 import {
   Header,
   HeroSection,
@@ -10,7 +10,8 @@ import {
   ContactSection,
   ServiceModal,
   DrSantoshModal,
-  Footer // NEW: Import Footer
+  Footer,
+  SwarnaInfoModal // NEW: Import SwarnaInfoModal
 } from './components';
 
 // Import data
@@ -21,6 +22,8 @@ export default function App() {
   const [selectedService, setSelectedService] = useState(null);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
   const [isDrSantoshModalOpen, setIsDrSantoshModalOpen] = useState(false);
+  // NEW: State for SwarnaInfoModal
+  const [isSwarnaInfoModalOpen, setIsSwarnaInfoModalOpen] = useState(false);
 
   const handleLearnMore = (service) => {
     setSelectedService(service);
@@ -42,6 +45,7 @@ export default function App() {
     window.open('tel:+918331995566');
     closeServiceModal();
     closeDrSantoshModal();
+    closeSwarnaInfoModal(); // NEW: Close Swarna modal too if open
   };
 
   const openDrSantoshModal = () => {
@@ -52,6 +56,16 @@ export default function App() {
     setIsDrSantoshModalOpen(false);
   };
 
+  // NEW: Functions to open/close SwarnaInfoModal
+  const openSwarnaInfoModal = () => {
+    setIsSwarnaInfoModalOpen(true);
+  };
+
+  const closeSwarnaInfoModal = () => {
+    setIsSwarnaInfoModalOpen(false);
+  };
+  // END NEW
+
   return (
     <div className="app">
       <video autoPlay loop muted playsInline className="video-bg">
@@ -59,9 +73,11 @@ export default function App() {
         Your browser does not support the video tag.
       </video>
 
-      {/* NEW: Pass openDrSantoshModal to Header */}
-      <Header onHeaderTitleClick={openDrSantoshModal} />
-      {/* END NEW */}
+      {/* MODIFIED: Pass onOpenSwarnaInfoModal to Header */}
+      <Header
+        onHeaderTitleClick={openDrSantoshModal}
+        onOpenSwarnaInfoModal={openSwarnaInfoModal} // NEW PROP
+      />
 
       <HeroSection
         scrollToServices={scrollToServices}
@@ -86,9 +102,14 @@ export default function App() {
         cvData={drSantoshCV}
       />
 
-      {/* NEW: Render Footer */}
-      <Footer />
+      {/* NEW: Render SwarnaInfoModal */}
+      <SwarnaInfoModal
+        isOpen={isSwarnaInfoModalOpen}
+        onClose={closeSwarnaInfoModal}
+      />
       {/* END NEW */}
+
+      <Footer />
     </div>
   );
 }

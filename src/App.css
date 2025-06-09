@@ -989,3 +989,51 @@ body {
   font-weight: bold;
   color: #00bfff; /* Highlight developer name */
 }
+
+/* Specific styles for SwarnaInfoModal */
+.swarna-info-modal {
+  max-width: 550px;
+}
+
+.header-nav a.swarna-name-link {
+  font-size: 0.7rem; /* Slightly smaller than other nav links */
+  cursor: pointer;
+}
+
+.swarna-subtitle {
+  font-size: 1.1rem;
+  color: rgba(224, 255, 255, 0.7);
+  margin-top: -10px; 
+  margin-bottom: 20px;
+}
+
+.swarna-details p {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.swarna-details p strong {
+  color: #00bfff; 
+}
+
+.swarna-about-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(224, 255, 255, 0.9);
+}
+
+.contact-link {
+  color:  #e0ffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #a0f0ff;
+  text-decoration: underline;
+}
+
+.swarna-info-modal .modal-actions {
+  justify-content: center;
+  align-items: center;
+}
